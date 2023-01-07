@@ -2,24 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Score : MonoBehaviour
+public class Despawn : MonoBehaviour
 {
-    int score;
-
+    public float clock;
+    public float lifetime;
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(myCoroutine());
     }
+
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
-    void OnCollisionEnter(Collision other){
-        score ++;
-        // Debug.Log(score);
+    IEnumerator myCoroutine(){
+        yield return new WaitForSeconds(2);
+        Destroy(this.gameObject);
     }
 }

@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class ObjectHit : MonoBehaviour
 {
+    public GameObject gameOver;
     void OnCollisionEnter(Collision other){
-        MeshRenderer mesh = GetComponent<MeshRenderer>();
-        mesh.material.color = Color.red;
+        if(other.gameObject.tag == "Player"){
+            MeshRenderer mesh = GetComponent<MeshRenderer>();
+            mesh.material.color = Color.red;
+            if(gameOver.GetComponent<GameOver>()){
+                 gameOver.GetComponent<GameOver>().Go();
+            }
+            else {
+                gameOver.GetComponent<GameWin>().Go();
+            }
+        }
     }
 }
